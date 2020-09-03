@@ -2,24 +2,23 @@ case class Card(shape: Shape, number: Number, color: Color, shading: Shading)
 
 enum Shape:
   case Diamond, Squiggle, Oval
-import Shape._
 
 enum Color:
   case Red, Green, Purple
-import Color._
 
 enum Shading:
   case Open, Striped, Solid
-import Shading._
 
 enum Number:
   case One, Two, Three
-import Number._
 
+// Let's create a deck of cards. Note that we are using Fully Qualified Names
+// (FQN) to access the `enum` members. Later in the course, we will use one of
+// the Scala 3 features that will allow us to avoid having to use FQNs
 val deck = List(
-  Card(Diamond,  One, Purple, Striped),
-  Card(Squiggle, Two, Red,    Open),
-  Card(Oval,     Three, Green,  Solid)
+  Card(Shape.Diamond,  Number.One, Color.Purple, Shading.Striped),
+  Card(Shape.Squiggle, Number.Two, Color.Red,    Shading.Open),
+  Card(Shape.Oval,     Number.Three, Color.Green,  Shading.Solid)
 )
 
 def isValidSet(card1: Card, card2: Card, card3: Card): Boolean =
@@ -65,13 +64,13 @@ def checkShadingProperty(card1: Card, card2: Card, card3: Card): Boolean =
   allSame || allDifferent
 
 isValidSet(
-  Card(Diamond,  One,   Purple, Striped),
-  Card(Squiggle, Two,   Purple, Open),
-  Card(Oval,     Three, Purple, Solid)
+  Card(Shape.Diamond,  Number.One,   Color.Purple, Shading.Striped),
+  Card(Shape.Squiggle, Number.Two,   Color.Purple, Shading.Open),
+  Card(Shape.Oval,     Number.Three, Color.Purple, Shading.Solid)
 )
 
 isValidSet(
-  Card(Diamond,  Two,   Purple, Striped),
-  Card(Squiggle, Two,   Purple, Open),
-  Card(Oval,     Three, Purple, Solid)
+  Card(Shape.Diamond,  Number.Two,   Color.Purple, Shading.Striped),
+  Card(Shape.Squiggle, Number.Two,   Color.Purple, Shading.Open),
+  Card(Shape.Oval,     Number.Three, Color.Purple, Shading.Solid)
 )
