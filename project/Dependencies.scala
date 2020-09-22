@@ -3,9 +3,10 @@ import dotty.tools.sbtplugin.DottyPlugin.autoImport.DottyCompatModuleID
 
 object Version {
   val logbackVer        = "1.2.3"
-  val mUnitVer          = "0.7.11"
-  val scalaVersion      = "0.26.0"
+  val mUnitVer          = "0.7.12"
+  val scalaVersion      = "0.27.0-RC1"
   val doodleVersion     = "0.9.21"
+  val scalajsdomVersion = "1.1.0"
 }
 
 object Dependencies {
@@ -15,16 +16,22 @@ object Dependencies {
   ).map (_ % Version.logbackVer)
 
   private val munitDeps = Seq(
-    "org.scalameta" %% "munit" % Version.mUnitVer % Test
+    "org.scalameta" %% "munit" % Version.mUnitVer % Test,
+    "org.scalameta" %% "munit-scalacheck" % Version.mUnitVer % Test
   )
-  
+
+  private val scalajsDeps: Seq[ModuleID] = Seq(
+    "org.scala-js" % "scalajs-dom_sjs1_2.13" % Version.scalajsdomVersion
+  )
+
   private val doodleDeps: Seq[ModuleID] = Seq(
     "org.creativescala" %% "doodle" % Version.doodleVersion,
   )
 
   val dependencies: Seq[ModuleID] =
     logbackDeps ++
-    munitDeps
+    munitDeps //++
+    //scalajsDeps
     
   val crossDependencies: Seq[ModuleID] =
     doodleDeps 

@@ -7,7 +7,8 @@ object CommonSettings {
   lazy val commonSettings = Seq(
     Compile / scalacOptions ++= CompileOptions.compileOptions,
     libraryDependencies ++= Dependencies.dependencies,
-    // libraryDependencies ++= Dependencies.crossDependencies.map(_.withDottyCompat(scalaVersion.value)),
+    libraryDependencies ++= Dependencies.crossDependencies.map(_.withDottyCompat(scalaVersion.value)),
+    testFrameworks += new TestFramework("munit.Framework")
   )
 
   lazy val configure: Project => Project = (project: Project) => {
