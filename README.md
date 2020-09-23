@@ -22,6 +22,17 @@ with `<d>` being a single digit week number.
 Each of these folders holds an sbt build common to all sections
 in the course for the corresponding week.
 
+# Extracting code for a specific week
+
+The `extract` script allows one to create a _zip_ archive that
+contains just the code for one of the course weeks.
+
+It requires to arguments, the first being the week number and the
+second, a folder in which the _zip_ archive will be created.
+
+> Note that the script will overwrite any pre-existing _zip_
+> archive
+
 # Current known issues
 
 ## Week 4
