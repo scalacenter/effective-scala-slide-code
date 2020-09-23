@@ -26,7 +26,7 @@ in the course for the corresponding week.
 
 ## Week 4
 
-At the moment, loading of the ``MyScalaJSPlugin` custom`` sbt plugin
+At the moment, loading of the `MyScalaJSPlugin` custom sbt plugin
 is disabled. It is expected that the core issue that prevents us from
 enabling the plugin will be resolved soon (in principle, it can be
 used already, but it requires one to do a `publishLocal` of an
