@@ -3,10 +3,11 @@ class Generator(previous: Int):
     val result = previous * 22_695_477 + 1
     (result, Generator(result))
 
-  def between(min: Int, max: Int): (Int, Generator) =
-   val delta = max - min
-   val (randomValue, nextGenerator) = nextInt()
-   (scala.math.abs(randomValue % delta) + min, nextGenerator)
+  def between(x: Int, y: Int): (Int, Generator) =
+    val min = math.min(x, y)
+    val delta = math.abs(x - y)
+    val (randomValue, nextGenerator) = nextInt()
+    (math.abs(randomValue % delta) + min, nextGenerator)
 
 end Generator
 

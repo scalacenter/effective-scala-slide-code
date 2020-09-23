@@ -7,10 +7,11 @@ object Generator:
     previous = result
     result
   
-  def between(min: Int, max: Int): Int =
-   val delta = max - min
-   val randomValue = nextInt()
-   scala.math.abs(randomValue % delta) + min
+  def between(x: Int, y: Int): Int =
+    val min = math.min(x, y)
+    val delta = math.abs(x - y)
+    val randomValue = nextInt()
+    scala.math.abs(randomValue % delta) + min
 end Generator
 
 val x = Generator.nextInt()
