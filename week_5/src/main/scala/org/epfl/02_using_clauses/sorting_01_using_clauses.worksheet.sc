@@ -6,18 +6,18 @@ import math.Ordering
 def sort[A](xs: List[A])(using ord: Ordering[A]): List[A] =
   def merge(xs: List[A], ys: List[A]): List[A] =
     (xs, ys) match {
-      case(left, Nil) => left
-      case(Nil, right) => right
-      case(x :: xsTail, y :: ysTail) =>
+      case (left, Nil) => left
+      case (Nil, right) => right
+      case (x :: xsTail, y :: ysTail) =>
         if ord.lt(x, y) then    // a generic comparison
-          x::merge(xsTail, ys)
+          x :: merge(xsTail, ys)
         else
           y :: merge(xs, ysTail)
     }
   end merge
 
   val n = xs.length / 2
-  if (n == 0) then
+  if n == 0 then
     xs
   else
     val (left, right) = xs.splitAt(n)
