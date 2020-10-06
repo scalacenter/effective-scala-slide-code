@@ -2,7 +2,7 @@
 
 def sort(xs: List[Int]): List[Int] =
   def merge(xs: List[Int], ys: List[Int]): List[Int] =
-    (xs, ys) match {
+    (xs, ys) match
       case (left, Nil) => left
       case (Nil, right) => right
       case (x :: xsTail, y :: ysTail) =>
@@ -10,7 +10,6 @@ def sort(xs: List[Int]): List[Int] =
           x :: merge(xsTail, ys)
         else
           y :: merge(xs, ysTail)
-    }
   end merge
 
   val n = xs.length / 2
