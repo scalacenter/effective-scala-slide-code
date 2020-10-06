@@ -2,7 +2,7 @@
 
 def sort[A](xs: List[A])(lessThan: (A, A) => Boolean): List[A] =
   def merge(xs: List[A], ys: List[A]): List[A] =
-    (xs, ys) match {
+    (xs, ys) match
       case (left, Nil) => left
       case (Nil, right) => right
       case (x :: xsTail, y :: ysTail) =>
@@ -10,7 +10,6 @@ def sort[A](xs: List[A])(lessThan: (A, A) => Boolean): List[A] =
           x :: merge(xsTail, ys)
         else
           y :: merge(xs, ysTail)
-    }
   end merge
 
   val n = xs.length / 2
