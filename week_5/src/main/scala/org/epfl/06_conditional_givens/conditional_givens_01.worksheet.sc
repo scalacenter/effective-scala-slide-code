@@ -2,7 +2,7 @@
 // given orderingList[A](using ord: Ordering[A]) as Ordering[List[A]]:
 given [A: Ordering] as Ordering[List[A]]:
   def compare(xs: List[A], ys: List[A]): Int =
-    (xs, ys) match {
+    (xs, ys) match
       case (Nil, Nil) => 0
       case (Nil, _) => -1
       case (_, Nil) => 1
@@ -12,7 +12,6 @@ given [A: Ordering] as Ordering[List[A]]:
           c
         else
           compare(xs, ys)
-    }
 end given
 
 def sort[A](xs: List[A])(using ord: Ordering[A]): List[A] =
