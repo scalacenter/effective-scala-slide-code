@@ -8,7 +8,7 @@ import scala.concurrent.duration.Duration.Inf
 /**
  *  `Future.sequence` doesn't implement fast-failure: this means that
  *  a completion with a Failure of one of the Futures in the sequence
- *  on which it operates, [in general] doesn't result in the returned
+ *  on which it operates, ''in general'' doesn't result in the returned
  *  Future to immediately fail.
  */
 private def futureSequenceFailFast[A](futures: Seq[Future[A]]): Future[Seq[A]] =
