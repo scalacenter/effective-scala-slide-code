@@ -1,4 +1,4 @@
-package org.epfl.parallel
+package org.epfl.errorhandling.part10
 
 import scala.concurrent.{ Await, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -22,7 +22,7 @@ def costlyCalculation2(n: Long): Future[Long] =
     n + 3
   }
 
-@main def run(): Unit =
+@main def runParallelOrNot(): Unit =
   println("kicking of calculation 1")
 
   val result1 =

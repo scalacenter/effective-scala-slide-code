@@ -1,16 +1,10 @@
-package org.epfl.future.sequence.fail.fast
+package org.epfl.errorhandling.part9
 
 import scala.concurrent.{ Await, Future, Promise, ExecutionContext}
 import scala.util.{Failure, Success}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration.Inf
 
-/**
- *  `Future.sequence` doesn't implement fast-failure: this means that
- *  a completion with a Failure of one of the Futures in the sequence
- *  on which it operates, ''in general'' doesn't result in the returned
- *  Future to immediately fail.
- */
 private def futureSequenceFailFast[A](futures: Seq[Future[A]]): Future[Seq[A]] =
   val fastFailResult: Promise[Seq[A]] = Promise[Seq[A]]()
 
@@ -43,11 +37,17 @@ def potentiallyFailingFuture(n: Int, failForValue: Int)
     }
 end potentiallyFailingFuture
 
-@main def run(): Unit =
+/**
+ *  `Future.sequence` doesn't implement fast-failure: this means that
+ *  a completion with a Failure of one of the Futures in the sequence
+ *  on which it operates, [in general] doesn't result in the returned
+ *  Future to immediately fail.
+ */
+@main def runFailFast(): Unit =
 
   val xs = List(1, 2, 6, 5, 20, 3, 45)
 
-  // Set variable `failForValue` to the value of an element in the "ls" collection - or not
+  // Set variable `failForValue` to the value of an element in the "xs" collection - or not
   val failForValue = 45
 
   println(s"Starting some computation...")
