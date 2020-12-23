@@ -1,7 +1,7 @@
-import java.time.{LocalDate, Period}
-
+import java.time.LocalDate
+import java.time.Period
 import scala.io.Source
-import scala.util.{Success, Try}
+import scala.util.{Success, Try, Using}
 
 def parseDate(str: String): Try[LocalDate] =
   Try(LocalDate.parse(str))
@@ -18,28 +18,22 @@ tryPeriod("2020-19-27", "2020-12-25")
 tryPeriod("2020-07-27", "2020-22-25")
 tryPeriod("2020-19-27", "2020-22-25")
 
-def readDateStrings(fileName: String): Try[List[String]] = Try {
-  val source = Source.fromFile(fileName)
-  val lines = source.getLines()
-  val numberOfDates = lines.next().toInt
-  val dateStrings: List[String] =
-    List.fill(numberOfDates)(lines.next())
-  source.close()
-  dateStrings
-}
+def readDateStrings(fileName: String): Try[List[String]] =
+  Using(Source.fromFile(fileName)) { source =>
+    source.getLines().toList
+  }
 
 def parseDates(fileName: String): Try[List[LocalDate]] =
   readDateStrings(fileName).flatMap { dateStrings =>
-    val tryDates =
-      dateStrings.foldLeft[Try[List[LocalDate]]](Success(Nil)) {
-        case (tryDates, dateString) =>
-          tryDates.flatMap { dates =>
-            parseDate(dateString).map { date =>
-              date :: dates
-            }
+    dateStrings.foldLeft[Try[List[LocalDate]]](Success(List.empty[LocalDate])) {
+      case (tryDates, dateString) =>
+        tryDates.flatMap { dates =>
+          parseDate(dateString).map { date =>
+            date :: dates
           }
-      }
-    tryDates
+        }
+    }
   }
 
-parseDates("/tmp/dates-file.txt")
+parseDates("./src/main/scala/org/epfl/03_try/dates-file.txt")
+
