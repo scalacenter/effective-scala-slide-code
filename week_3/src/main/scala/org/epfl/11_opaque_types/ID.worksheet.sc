@@ -17,5 +17,6 @@ import UserID.UserID
 
 def findVehicle(vehicleID: VehicleID): Option[Vehicle] = ???
 
-def mistake(userID: UserID): Unit =
-  findVehicle(userID)
+// Uncomment the following lines to see the compilation error
+//def mistake(userID: UserID): Unit =
+//  findVehicle(userID)
