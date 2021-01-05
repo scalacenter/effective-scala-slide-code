@@ -12,28 +12,27 @@ def getPage(page: Int): Future[String] =
     Future.failed(Exception(s"Timeout when fetching page $page"))
   else Future(s"Page $page")
 
-def getAllPages(): Future[Seq[String]] =
-  getPagesCount().flatMap { totalPages =>
-    Future.traverse(1 to totalPages)(getPage)
-  }
-
-def resilientGetAllPages(): Future[Seq[String]] =
-
+def resilientGetPage(page: Int): Future[String]
   val maxAttempts = 3
 
-  def attempt(remainingAttempts: Int): Future[Seq[String]] =
+  def attempt(remainingAttempts: Int): Future[String] =
     if remainingAttempts == 0 then
-      Future.failed(Exception(s"Fetching all the pages failed after $maxAttempts"))
+      Future.failed(Exception(s"Fetching page $page failed after $maxAttempts"))
     else
-      println(s"Trying to fetch all the pages ($remainingAttempts remaining attempts)")
-      getAllPages()
+      println(s"Trying to fetch page $page ($remainingAttempts remaining attempts)")
+      getPage(page)
         .recoverWith { case NonFatal(_) =>
-          System.err.println(s"Fetching all the paged failed...")
+          System.err.println(s"Fetching page $page failed...")
           attempt(remainingAttempts - 1)
         }
 
   attempt(maxAttempts)
-end resilientGetAllPages
+end resilientGetPage
+
+def resilientGetAllPages(): Future[Seq[String]] =
+  getPagesCount().flatMap { totalPages =>
+    Future.traverse(1 to totalPages)(resilientGetPage)
+  }
 
 @main def run() =
   resilientGetAllPages().onComplete(println)

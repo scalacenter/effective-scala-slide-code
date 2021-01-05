@@ -3,7 +3,7 @@ package org.epfl.errorhandling.part1
 def attemptSomething(): Unit =
   println("So far, so good")
   println("Still there")
-  throw new RuntimeException("We can’t continue")
+  throw RuntimeException("We can’t continue")
   println("You will never see this")
 
 @main def run(): Unit =

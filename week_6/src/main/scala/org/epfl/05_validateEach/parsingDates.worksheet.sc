@@ -16,22 +16,22 @@ def validateBoth[A, B](
     case (Left(e1), Left(e2)) => Left(e1 ++ e2)
 
 def validateEach[A, B](
-  as: List[A]
+  as: Seq[A]
 )(
   validate: A => Validated[B]
-): Validated[List[B]] =
-  as.foldLeft[Validated[List[B]]](Right(Nil)) {
+): Validated[Seq[B]] =
+  as.foldLeft[Validated[Seq[B]]](Right(Vector.empty)) {
     (validatedBs, a) =>
       val validatedB: Validated[B] = validate(a)
-      validateBoth(validatedB, validatedBs)
-        .map((b, bs) => b :: bs)
+      validateBoth(validatedBs, validatedB)
+        .map((bs, b) => bs :+ b)
   }
 
 def parseDate(str: String): Validated[LocalDate] =
   Try(LocalDate.parse(str)).toEither
     .left.map(error => Seq(error.getMessage))
 
-def parseDates(strs: List[String]): Validated[List[LocalDate]] =
+def parseDates(strs: Seq[String]): Validated[Seq[LocalDate]] =
   validateEach(strs)(parseDate)
 
 parseDates(List("2020-01-04", "2020-08-09"))
