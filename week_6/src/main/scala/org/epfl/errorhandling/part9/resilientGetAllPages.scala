@@ -12,7 +12,7 @@ def getPage(page: Int): Future[String] =
     Future.failed(Exception(s"Timeout when fetching page $page"))
   else Future(s"Page $page")
 
-def resilientGetPage(page: Int): Future[String]
+def resilientGetPage(page: Int): Future[String] =
   val maxAttempts = 3
 
   def attempt(remainingAttempts: Int): Future[String] =
