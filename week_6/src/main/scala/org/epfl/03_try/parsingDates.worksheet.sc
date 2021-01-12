@@ -18,18 +18,18 @@ tryPeriod("2020-19-27", "2020-12-25")
 tryPeriod("2020-07-27", "2020-22-25")
 tryPeriod("2020-19-27", "2020-22-25")
 
-def readDateStrings(fileName: String): Try[List[String]] =
+def readDateStrings(fileName: String): Try[Seq[String]] =
   Using(Source.fromFile(fileName)) { source =>
-    source.getLines().toList
+    source.getLines().toSeq
   }
 
-def parseDates(fileName: String): Try[List[LocalDate]] =
+def parseDates(fileName: String): Try[Seq[LocalDate]] =
   readDateStrings(fileName).flatMap { dateStrings =>
-    dateStrings.foldLeft[Try[List[LocalDate]]](Success(List.empty[LocalDate])) {
+    dateStrings.foldLeft[Try[Seq[LocalDate]]](Success(Vector.empty[LocalDate])) {
       case (tryDates, dateString) =>
         tryDates.flatMap { dates =>
           parseDate(dateString).map { date =>
-            date :: dates
+            dates :+ date
           }
         }
     }

@@ -18,15 +18,15 @@ def validateBoth[A, B](
   }
 
 def validateEach[A, B](
-  as: List[A]
+  as: Seq[A]
 )(
   validate: A => Validated[B]
-): Validated[List[B]] =
-  as.foldLeft[Validated[List[B]]](Right(Nil)) {
+): Validated[Seq[B]] =
+  as.foldLeft[Validated[Seq[B]]](Right(Vector.empty)) {
     (validatedBs, a) =>
       val validatedB: Validated[B] = validate(a)
       validateBoth(validatedB, validatedBs)
-        .map((b, bs) => b :: bs)
+        .map((b, bs) => bs :+ b)
   }
 
 def parseDate(str: String): Validated[LocalDate] =
@@ -35,12 +35,12 @@ def parseDate(str: String): Validated[LocalDate] =
     case Success(date)      => Right(date)
   }
 
-def readDateStrings(fileName: String): Try[List[String]] =
+def readDateStrings(fileName: String): Try[Seq[String]] =
   Using(Source.fromFile(fileName)) { source =>
-    source.getLines().toList
+    source.getLines().toSeq
   }
 
-def readAndParseDates(fileName: String): Try[Validated[List[LocalDate]]] =
+def readAndParseDates(fileName: String): Try[Validated[Seq[LocalDate]]] =
   readDateStrings(fileName).map { dateStrings =>
     validateEach(dateStrings)(parseDate)
   }
