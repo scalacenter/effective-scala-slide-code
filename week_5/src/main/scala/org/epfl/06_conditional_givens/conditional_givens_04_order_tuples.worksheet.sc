@@ -1,6 +1,6 @@
 
-// given orderingList[A](using ord: Ordering[A]) as Ordering[List[A]]:
-given [A: Ordering] as Ordering[List[A]]:
+// given orderingList[A](using ord: Ordering[A]): Ordering[List[A]] with
+given [A: Ordering]: Ordering[List[A]] with
   def compare(xs: List[A], ys: List[A]): Int =
     (xs, ys) match
       case (Nil, Nil) => 0
@@ -14,7 +14,7 @@ given [A: Ordering] as Ordering[List[A]]:
           compare(xs, ys)
 end given
 
-given [A: Ordering, B: Ordering] as Ordering[(A, B)]:
+given [A: Ordering, B: Ordering]: Ordering[(A, B)] with
   def compare(t1: (A, B), t2: (A, B)): Int =
     val c = summon[Ordering[A]].compare(t1._1, t2._1)
     if c != 0 then

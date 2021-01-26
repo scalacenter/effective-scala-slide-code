@@ -41,5 +41,5 @@ def house2 =
 val picture =
   house1.at(-600, -50).on(house2)
 
-@main def main(): Unit =
+@main def run(): Unit =
   picture.write[Pdf]("houses.pdf")

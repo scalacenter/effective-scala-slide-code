@@ -2,7 +2,7 @@
 trait X {
   val x = 5
 }
-//given loop(using a: X) as X = a
+//given loop(using a: X): X = a
 
 given X = new X {}
 

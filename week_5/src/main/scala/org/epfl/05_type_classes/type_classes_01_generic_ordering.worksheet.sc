@@ -35,7 +35,7 @@ sort(strings)
 
 case class Rational(num: Int, denom: Int)
 
-given Ordering[Rational]:
+given Ordering[Rational] with
   def compare(r1: Rational, r2: Rational): Int =
     r1.num * r2.denom - r2.num * r1.denom
 
