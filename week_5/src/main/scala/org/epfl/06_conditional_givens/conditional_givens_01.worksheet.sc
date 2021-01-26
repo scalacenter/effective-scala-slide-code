@@ -1,6 +1,6 @@
 
-// given orderingList[A](using ord: Ordering[A]) as Ordering[List[A]]:
-given [A: Ordering] as Ordering[List[A]]:
+// given orderingList[A](using ord: Ordering[A]): Ordering[List[A]] with
+given [A: Ordering]: Ordering[List[A]] with
   def compare(xs: List[A], ys: List[A]): Int =
     (xs, ys) match
       case (Nil, Nil) => 0
