@@ -40,8 +40,8 @@ val tuple: (Int, String, Boolean) = (42, "foo", true)
 Map("Alice" -> 42, "Bob" -> 30) == Map(("Alice", 42), ("Bob", 30))
 
 // Accessing Tuple elements
-val fortyTwo = tuple._1
-val foo      = tuple._2
+val fortyTwo = tuple(0)
+val foo      = tuple(1)
 
 // Destructured assignment
 val (fortyTwo_, foo_, bool_) = tuple
