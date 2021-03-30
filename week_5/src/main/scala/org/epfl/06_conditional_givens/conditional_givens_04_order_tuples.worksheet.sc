@@ -16,11 +16,11 @@ end given
 
 given [A: Ordering, B: Ordering]: Ordering[(A, B)] with
   def compare(t1: (A, B), t2: (A, B)): Int =
-    val c = summon[Ordering[A]].compare(t1._1, t2._1)
+    val c = summon[Ordering[A]].compare(t1(0), t2(0))
     if c != 0 then
       c
     else
-      summon[Ordering[B]].compare(t1._2, t2._2)
+      summon[Ordering[B]].compare(t1(1), t2(1))
 end given
 
 def sort[A](xs: List[A])(using ord: Ordering[A]): List[A] =

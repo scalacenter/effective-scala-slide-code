@@ -1,7 +1,7 @@
 package org.epfl.errorhandling.part9
 
 import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits._
+import scala.concurrent.ExecutionContext.Implicits.*
 import scala.util.Random
 import scala.util.control.NonFatal
 

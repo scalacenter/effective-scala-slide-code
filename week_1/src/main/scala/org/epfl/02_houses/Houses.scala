@@ -1,16 +1,16 @@
 package effective
 
-// import cats.instances.all._
-import doodle.java2d._
-// import doodle.syntax._
-import doodle.effect.Writer._
-// import doodle.examples._
-import doodle.image._
-import doodle.image.syntax._
-// import doodle.image.examples._
-// import doodle.interact.syntax._
-// import doodle.explore.syntax._
-import doodle.core._
+// import cats.instances.all.*
+import doodle.java2d.*
+// import doodle.syntax.*
+import doodle.effect.Writer.*
+// import doodle.examples.*
+import doodle.image.*
+import doodle.image.syntax.*
+// import doodle.image.examples.*
+// import doodle.interact.syntax.*
+// import doodle.explore.syntax.*
+import doodle.core.*
 
 def house1 =
   Image.rectangle(100, 200)

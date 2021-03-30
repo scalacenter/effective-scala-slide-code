@@ -2,9 +2,9 @@ package org.epfl.sierpinski
 
 import doodle.core.Color
 import doodle.image.Image
-import doodle.image.syntax._
-import doodle.java2d._
-import cats.instances.list._
+import doodle.image.syntax.*
+import doodle.java2d.*
+import cats.instances.list.*
 
 // Depth of the Sierpinski triangle
 val iterations = 6
