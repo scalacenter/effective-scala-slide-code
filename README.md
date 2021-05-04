@@ -33,21 +33,11 @@ second, a folder in which the _zip_ archive will be created.
 > Note that the script will overwrite any pre-existing _zip_
 > archive
 
-# Current known issues
-
-## Week 4
-
-At the moment, loading of the `MyScalaJSPlugin` custom sbt plugin
-is disabled. It is expected that the core issue that prevents us from
-enabling the plugin will be resolved soon (in principle, it can be
-used already, but it requires one to do a `publishLocal` of an
-artifact from the Dotty Compiler project).
-
 # Other
 
 The worksheets have been tested extensively using VCS/Metals. The
 worksheet functionality in Metals is still relatively new, but it's
-gaining functionality and the Metals team is very active in resolving
+gaining functionality, and the Metals team is very active in resolving
 issues as soon as they're identified.
 
 _One important thing to note is that, in Metals, Scala worksheets have to
