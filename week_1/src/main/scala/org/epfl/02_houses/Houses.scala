@@ -1,15 +1,9 @@
 package effective
 
-// import cats.instances.all.*
 import doodle.java2d.*
-// import doodle.syntax.*
 import doodle.effect.Writer.*
-// import doodle.examples.*
 import doodle.image.*
 import doodle.image.syntax.*
-// import doodle.image.examples.*
-// import doodle.interact.syntax.*
-// import doodle.explore.syntax.*
 import doodle.core.*
 
 def house1 =
