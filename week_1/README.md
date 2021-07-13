@@ -6,4 +6,4 @@ sbt run
 
 This will create a file houses.pdf.
 
-The other code example is a self-contained worksheet.
+The other code examples are self-contained worksheets.
