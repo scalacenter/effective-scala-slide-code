@@ -1,4 +1,4 @@
-ThisBuild / scalaVersion := "3.0.0"
+ThisBuild / scalaVersion := "3.1.1"
 
 val js =
   project.in(file("js"))
