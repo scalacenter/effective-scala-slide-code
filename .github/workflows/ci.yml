@@ -1,0 +1,13 @@
+name: Test code snippets
+on: push
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    env:
+      SBT_NATIVE_CLIENT: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v13
+      - run: sbt compile
+      - run: sbt test
+      - run: sbt checkWorksheets
