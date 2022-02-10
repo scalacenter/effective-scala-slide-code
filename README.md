@@ -22,6 +22,10 @@ with `<d>` being a single digit week number.
 Each of these folders holds an sbt build common to all sections
 in the course for the corresponding week.
 
+The root build definition (`build.sbt`) is meant for development
+and CI purposes only. Therefore each subproject `week_N` has its own
+`week_N/build.sbt` and `week_N/project/build.properties`
+
 # Extracting code for a specific week
 
 The `extract` script allows one to create a _zip_ archive that
