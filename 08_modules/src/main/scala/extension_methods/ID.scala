@@ -1,3 +1,4 @@
+package extension_methods
 
 object UserID:
 

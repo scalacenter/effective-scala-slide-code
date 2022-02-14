@@ -1,4 +1,4 @@
-package org.epfl.errorhandling.part9
+package examples_with_future
 
 import scala.concurrent.{ Await, Future, Promise, ExecutionContext}
 import scala.util.{Failure, Success}

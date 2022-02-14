@@ -1,4 +1,6 @@
-package testing
+package property_based_testing
+
+import testing._
 
 import org.scalacheck.Gen
 import org.scalacheck.Prop.forAll

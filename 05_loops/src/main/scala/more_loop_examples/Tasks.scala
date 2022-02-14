@@ -1,3 +1,4 @@
+package more_loop_examples
 
 case class Task(name: String, duration: Int, requirements: List[Task])
 

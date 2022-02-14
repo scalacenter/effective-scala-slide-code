@@ -1,4 +1,6 @@
-package testing
+package mocking
+
+import testing.HttpServer
 
 class HttpServerSuite extends munit.FunSuite:
 

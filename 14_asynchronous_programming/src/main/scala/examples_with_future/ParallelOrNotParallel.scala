@@ -1,4 +1,4 @@
-package org.epfl.errorhandling.part10
+package examples_with_future
 
 import scala.concurrent.{ Await, Future}
 import scala.concurrent.ExecutionContext.Implicits.global

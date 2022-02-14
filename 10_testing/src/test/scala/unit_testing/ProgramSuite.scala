@@ -1,4 +1,6 @@
-package testing
+package unit_testing
+
+import testing._
 
 class ProgramSuite extends munit.FunSuite:
 

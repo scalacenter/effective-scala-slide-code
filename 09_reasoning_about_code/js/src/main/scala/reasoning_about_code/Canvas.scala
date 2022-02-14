@@ -1,4 +1,4 @@
-package reasonnng_about_the_code
+package reasoning_about_code
 
 import org.scalajs.dom.{CanvasRenderingContext2D, document}
 import org.scalajs.dom.html.Canvas

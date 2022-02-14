@@ -1,4 +1,4 @@
-package org.epfl.errorhandling.part8
+package operations_on_type_future
 
 import java.time.LocalDate
 

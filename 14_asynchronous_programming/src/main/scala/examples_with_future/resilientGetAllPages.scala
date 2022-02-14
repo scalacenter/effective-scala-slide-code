@@ -1,4 +1,4 @@
-package org.epfl.errorhandling.part9
+package examples_with_future
 
 import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.*

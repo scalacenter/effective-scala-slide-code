@@ -1,6 +1,6 @@
 #!/bin/bash -eo pipefail
 
-USAGE="USAGE: extract <week number> <target folder>"
+USAGE="USAGE: extract <module name> <target folder>"
 
 RED='\033[1;31m'
 GREEN='\033[1;32m'
@@ -20,14 +20,13 @@ if [ $# -ne 2 ];then
   exit 1
 fi
 
-WEEK_NR=$1
-CODE_FOLDER="week_$1"
-CODE_ZIP_FILE=${CODE_FOLDER}.zip
+FOLDER_NAME=$1
+CODE_ZIP_FILE=${FOLDER_NAME}.zip
 TARGET_FOLDER=$2
 
 # Test if code folder exists
-if [ ! -d $CODE_FOLDER ];then
-  printError "No code found for $CODE_FOLDER"
+if [ ! -d $FOLDER_NAME ];then
+  printError "No code found for $FOLDER_NAME"
   exit 1
 fi
 # Test if target folder exists
@@ -38,21 +37,21 @@ fi
 
 TMP_FOLDER=$(mktemp -d)
 
-cp -r $CODE_FOLDER $TMP_FOLDER
+cp -r $FOLDER_NAME $TMP_FOLDER
 (
  cd $TMP_FOLDER
- find ${CODE_FOLDER} -name target -o \
+ find ${FOLDER_NAME} -name target -o \
                      -name .bloop -o \
                      -name .metals -o \
                      -name .idea -o \
                      -name .vscode \
                      -type d | xargs rm -rf
- find ${CODE_FOLDER} -name .DS_Store -type f | xargs rm -f
- zip -r ${CODE_ZIP_FILE} ${CODE_FOLDER} 2>&1 > /dev/null
- mv ${CODE_FOLDER}.zip ${TARGET_FOLDER}
+ find ${FOLDER_NAME} -name .DS_Store -type f | xargs rm -f
+ zip -r ${CODE_ZIP_FILE} ${FOLDER_NAME} 2>&1 > /dev/null
+ mv ${FOLDER_NAME}.zip ${TARGET_FOLDER}
 )
  
-printGreen "Extracted code for ${CODE_FOLDER} to ${TARGET_FOLDER}/${CODE_ZIP_FILE}"
+printGreen "Extracted code for ${FOLDER_NAME} to ${TARGET_FOLDER}/${CODE_ZIP_FILE}"
 
 # Clean-up
 trap "rm -rf ${TMP_FOLDER}; exit 0" 0 

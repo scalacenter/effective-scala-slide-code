@@ -1,4 +1,4 @@
-package effective
+package methods_and_parameters
 
 import doodle.java2d.*
 import doodle.effect.Writer.*

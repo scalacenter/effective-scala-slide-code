@@ -22,6 +22,19 @@ with `<d>` being a digit module number.
 Each of these folders holds code examples corresponding to a unit. Not
 all units have code examples.
 
+# Extracting code for a specific week
+
+The `extract` script allows one to create a _zip_ archive that
+contains just the code for one of the course weeks.
+
+It requires to arguments, the first being the module name and the
+second, a folder in which the _zip_ archive will be created.
+
+For example: `sh extract 02_basics /tmp`
+
+> Note that the script will overwrite any pre-existing _zip_
+> archive
+
 # Other
 
 The worksheets have been tested extensively using VCS/Metals. The

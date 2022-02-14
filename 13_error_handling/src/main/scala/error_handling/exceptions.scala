@@ -1,4 +1,4 @@
-package org.epfl.errorhandling.part1
+package error_handling
 
 def attemptSomething(): Unit =
   println("So far, so good")
