@@ -37,7 +37,7 @@ For example: `sh extract 02_basics /tmp`
 
 # Other
 
-The worksheets have been tested extensively using VCS/Metals. The
+The worksheets have been tested extensively using VSC/Metals. The
 worksheet functionality in Metals is still relatively new, but it's
 gaining functionality, and the Metals team is very active in resolving
 issues as soon as they're identified.
