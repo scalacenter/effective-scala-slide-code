@@ -1,5 +1,3 @@
-case class Card(shape: Shape, number: Int, color: Color, shading: Shading)
-
 enum Shape:
   case Diamond, Squiggle, Oval
 
@@ -8,6 +6,8 @@ enum Color:
 
 enum Shading:
   case Open, Striped, Solid
+
+case class Card(shape: Shape, number: Int, color: Color, shading: Shading)
 
 val deck = List(
   Card(Shape.Diamond,  1, Color.Purple, Shading.Striped),
