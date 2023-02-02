@@ -5,6 +5,7 @@ lazy val root = (project in file("."))
     collections,
     loops,
     modules,
+    reasoning,
     testing,
     typeDirectedProgramming,
     extensionMethodsAndImplicitConversions,
@@ -31,6 +32,10 @@ lazy val loops =
 
 lazy val modules =
   project.in(file("08_modules"))
+    .enablePlugins(WorksheetsRunner)
+
+lazy val reasoning =
+  project.in(file("09_reasoning_about_code"))
     .enablePlugins(WorksheetsRunner)
 
 lazy val testing =

@@ -42,6 +42,7 @@ cp -r $FOLDER_NAME $TMP_FOLDER
  cd $TMP_FOLDER
  find ${FOLDER_NAME} -name target -o \
                      -name .bloop -o \
+                     -name .bsp -o \
                      -name .metals -o \
                      -name .idea -o \
                      -name .vscode \

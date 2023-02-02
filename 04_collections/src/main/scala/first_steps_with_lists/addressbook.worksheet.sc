@@ -1,10 +1,10 @@
-case class AddressBook(contacts: List[Contact])
-
 case class Contact(
   name: String,
   email: String,
   phoneNumbers: List[String]
 )
+
+case class AddressBook(contacts: List[Contact])
 
 val alice = Contact("Alice", "alice@sca.la", List())
 val bob   = Contact("Bob", "bob@sca.la", List("+41787829420"))
