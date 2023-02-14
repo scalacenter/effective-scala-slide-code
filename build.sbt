@@ -57,3 +57,7 @@ lazy val errorHandling =
 lazy val asynchronousProgramming =
   project.in(file("14_asynchronous_programming"))
     .enablePlugins(WorksheetsRunner)
+
+lazy val phoneMnemonics =
+  project.in(file("15_phone_mnemonics"))
+    .enablePlugins(WorksheetsRunner)
