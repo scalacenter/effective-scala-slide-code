@@ -26,7 +26,7 @@ def readDateStrings(fileName: String): Try[Seq[String]] =
 def parseDates(fileName: String): Try[Seq[LocalDate]] =
   readDateStrings(fileName).flatMap { dateStrings =>
     dateStrings.foldLeft[Try[Seq[LocalDate]]](Success(Vector.empty[LocalDate])) {
-      case (tryDates, dateString) =>
+      (tryDates, dateString) =>
         tryDates.flatMap { dates =>
           parseDate(dateString).map { date =>
             dates :+ date
