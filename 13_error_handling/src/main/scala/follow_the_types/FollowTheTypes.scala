@@ -24,31 +24,31 @@ def read(path: Path): Try[String] =
 def readAllFilesWrong(tentativePaths: Try[Seq[Path]]) =
   tentativePaths.map(paths => paths.map(path => read(path)))
 
-case class Result[A](tentativeValidatedValue: Try[Validated[A]]):
+case class MyResult[A](tentativeValidatedValue: Try[Validated[A]]):
 
-  def map[B](f: A => B): Result[B] =
-    Result(tentativeValidatedValue.map(validatedValue => validatedValue.map(f)))
+  def map[B](f: A => B): MyResult[B] =
+    MyResult(tentativeValidatedValue.map(validatedValue => validatedValue.map(f)))
 
-  def flatMap[B](f: A => Result[B]): Result[B] =
+  def flatMap[B](f: A => MyResult[B]): MyResult[B] =
     val tentativeValidatedB: Try[Validated[B]] =
       tentativeValidatedValue.flatMap {
         case Right(value) => f(value).tentativeValidatedValue
         case Left(errors) => Success(Left(errors))
       }
-    Result(tentativeValidatedB)
+    MyResult(tentativeValidatedB)
 
-end Result
+end MyResult
 
-object Result:
-  def successfulValid[A](value: A): Result[A] =
-    Result(Success(Right(value)))
-  def successfulInvalid[A](errors: Errors): Result[A] =
-    Result(Success(Left(errors)))
-  def successfulValidated[A](validatedValue: Validated[A]): Result[A] =
-    Result(Success(validatedValue))
-  def failed[A](throwable: Throwable): Result[A] =
-    Result(Failure(throwable))
-end Result
+object MyResult:
+  def successfulValid[A](value: A): MyResult[A] =
+    MyResult(Success(Right(value)))
+  def successfulInvalid[A](errors: Errors): MyResult[A] =
+    MyResult(Success(Left(errors)))
+  def successfulValidated[A](validatedValue: Validated[A]): MyResult[A] =
+    MyResult(Success(validatedValue))
+  def failed[A](throwable: Throwable): MyResult[A] =
+    MyResult(Failure(throwable))
+end MyResult
 
 def incrementDates(dates: Seq[LocalDate]): Seq[LocalDate] =
   dates.map(date => date.plusDays(1))
@@ -60,7 +60,7 @@ def incrementTentativeValidatedDates(
     .map(validatedDates => validatedDates.map(dates => incrementDates(dates)))
 
 // Same as `incrementTentativeValidatedDates`, but with `Result` instead
-def incrementDatesResult(datesResult: Result[Seq[LocalDate]]) =
+def incrementDatesResult(datesResult: MyResult[Seq[LocalDate]]) =
   datesResult.map(dates => incrementDates(dates))
 
 // Complete implementation of `readAllFiles`, using a functional programming style
